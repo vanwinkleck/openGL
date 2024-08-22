@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/rip/Documents/repos/openGL/build",
+  "command": "/usr/bin/c++ -I/home/rip/Documents/repos/openGL/include -g -o CMakeFiles/openGL.dir/src/main.cpp.o -c /home/rip/Documents/repos/openGL/src/main.cpp",
+  "file": "/home/rip/Documents/repos/openGL/src/main.cpp",
+  "output": "CMakeFiles/openGL.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/rip/Documents/repos/openGL/build",
+  "command": "/usr/bin/cc -I/home/rip/Documents/repos/openGL/include -g -o CMakeFiles/openGL.dir/src/glad.c.o -c /home/rip/Documents/repos/openGL/src/glad.c",
+  "file": "/home/rip/Documents/repos/openGL/src/glad.c",
+  "output": "CMakeFiles/openGL.dir/src/glad.c.o"
+}
+]

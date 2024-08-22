@@ -1,0 +1,6 @@
+# ninja log v6
+1	34	1724366376610078573	CMakeFiles/openGL.dir/main.cpp.o	3e2bf45e0b3cc54
+145	177	1724368679310606201	openGL	2b21471de75da5f7
+9	72	1724367955614996663	CMakeFiles/glad.dir/src/glad.c.o	f3792eacf40e1367
+1	145	1724368679166606921	CMakeFiles/openGL.dir/src/main.cpp.o	7bd6481dec32fd45
+1	67	1724368679166606921	CMakeFiles/openGL.dir/src/glad.c.o	858b2c24dfb2307a
