@@ -90,6 +90,12 @@ int main(int, char**){
         -0.0f, -0.5f, 0.0f,  // right
         -0.45f, 0.5f, 0.0f,  // top 
         // second triangle
+       //  0.0f, -0.5f, 0.0f,  // left
+       //  0.9f, -0.5f, 0.0f,  // right
+       //  0.45f, 0.5f, 0.0f   // top 
+};
+
+    float vertices1[] = {
          0.0f, -0.5f, 0.0f,  // left
          0.9f, -0.5f, 0.0f,  // right
          0.45f, 0.5f, 0.0f   // top 
@@ -99,27 +105,34 @@ int main(int, char**){
   //  1, 2, 3    // second triangle
 //};  
 
-    unsigned int VBO, VAO;//, EBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
+    unsigned int VBOs[2], VAOs[2];//, EBO;
+    glGenVertexArrays(2, VAOs);
+    glGenBuffers(2, VBOs);
     //glGenBuffers(1, &EBO);
 
-    glBindVertexArray(VAO);
-
-    // Copy the vertices array in a buffer for OpenGL to use
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    // First Triangle
+    glBindVertexArray(VAOs[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);	
+    glEnableVertexAttribArray(0);
+    // Second Triangle
+    glBindVertexArray(VAOs[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1), vertices1, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);	
+    glEnableVertexAttribArray(0);
     // Copy index array in an element buffer for OpenGL to use
     //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // Set vertex attribute pointers
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glad_glEnableVertexAttribArray(0);
+   // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    //glad_glEnableVertexAttribArray(0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    //glBindBuffer(GL_ARRAY_BUFFER, 0);
     
-    glBindVertexArray(0); 
+    //glBindVertexArray(0); 
 
      // uncomment this call to draw in wireframe polygons.
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -142,8 +155,12 @@ int main(int, char**){
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
-        glBindVertexArray(VAO); 
-        glDrawArrays(GL_TRIANGLES, 0, 6);
+        // Draw first Triangle with first VAO
+        glBindVertexArray(VAOs[0]); 
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        // Draw second Triangle with second VAO
+        glBindVertexArray(VAOs[1]);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
         //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         // glBindVertexArray(0); // no need to unbind it every time 
  
@@ -154,8 +171,8 @@ int main(int, char**){
 
     }
 
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
+    glDeleteVertexArrays(2, VAOs);
+    glDeleteBuffers(2, VBOs);
    // glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
 
