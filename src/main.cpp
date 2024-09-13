@@ -14,6 +14,8 @@ void processInput(GLFWwindow *window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
+float opacityValue = 0.2f;
+
 int main(int, char**){
 
     glfwInit();
@@ -157,16 +159,20 @@ unsigned int indices[] = {
         // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        
-        ourShader.use();
-        //float offset = 0.5f;
-        //ourShader.setFloat("xOffset", offset);
+
         glActiveTexture(GL_TEXTURE0); // Activate the texture before binding it 
         glBindTexture(GL_TEXTURE_2D, texture1);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
         glBindVertexArray(VAO); 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+        ourShader.setFloat("opacity", opacityValue);
+        
+        ourShader.use();
+        //float offset = 0.5f;
+        //ourShader.setFloat("xOffset", offset);
+       
         // Draw second Triangle with second VAO
         //glUseProgram(shaderProgramYellow);
         //glBindVertexArray(VAOs[1]);
