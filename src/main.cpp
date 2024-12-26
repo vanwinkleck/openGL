@@ -4,9 +4,9 @@
 #include <cmath>
 #include <stdio.h>
 #include "../include/glad/glad.h"
-#include <../include/shader_s.h>
+#include "../include/shader_s.h"
 #include <GLFW/glfw3.h>
-#include <../include/stb_image.h>
+#include "../include/stb_image.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
